@@ -1,4 +1,3 @@
-const cors = require('cors')
 const express = require('express')
 var bodyParser = require('body-parser')
 // const socketIo = require("socket.io");
@@ -9,7 +8,6 @@ const router = require("./routes");
 
 const app = express();
 app.use(router);
-app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 

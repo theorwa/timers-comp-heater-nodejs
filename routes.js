@@ -1,5 +1,8 @@
+const cors = require('cors')
 const express = require("express");
 const router = express.Router();
+
+router.all('*', cors());
 
 var timers = "compres = 00:00:00,notComp = 00:00:00,heater = 00:00:00,notHeat = 00:00:00";
 var temp = "temp1 max = 00.00 C,temp1 now = 00.00 C,temp1 min = 00.00 C,temp2 max = 00.00 C,temp2 now = 00.00 C,temp2 min = 00.00 C";
