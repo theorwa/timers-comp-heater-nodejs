@@ -1,37 +1,40 @@
 const cors = require('cors')
 const express = require('express')
 var bodyParser = require('body-parser')
-const app = express()
-app.use(cors())
+// const socketIo = require("socket.io");
+const http = require("http");
 
+const port = process.env.PORT || 3000
+const router = require("./routes");
+
+const app = express();
+app.use(router);
+app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-const port = process.env.PORT || 3000
+const server = http.createServer(app);
+// const io = socketIo(server); // < Interesting!
 
-var timers = "compres = 00:00:00,notComp = 00:00:00,heater = 00:00:00,notHeat = 00:00:00";
-var temp = "temp1 = 00.00 C,temp2 = 00.00 C";
+// let interval;
 
-app.get('/api', (req, res) => {
-  res.status(200).json({api: 'version 1'})
-})
+// io.on("connection", (socket) => {
+//   console.log("New client connected");
+//   if (interval) {
+//     clearInterval(interval);
+//   }
+//   interval = setInterval(() => getApiAndEmit(socket), 1000);
+//   socket.on("disconnect", () => {
+//     console.log("Client disconnected");
+//     clearInterval(interval);
+//   });
+// });
 
-app.get('/data', (req, res) => {
-  res.status(200).json({timers, temp})
-})
+// const getApiAndEmit = socket => {
+//   // const response = {timers: router.timers, temp: router.temp};
+//   const response = "ORWA123";
+//   // Emitting a new message. Will be consumed by the client
+//   socket.emit("FromAPI", response);
+// };
 
-app.post('/data', (req, res) => {
-  if (req.body && req.body.timers && req.body.temp)
-  {
-    timers = req.body.timers;
-    temp = req.body.temp;
-    res.send("OK");
-  }
-  else
-  {
-    res.send("Failed");
-  }
-  
-})
-
-app.listen(port, () => console.log('server started'))
+server.listen(port, () => console.log(`Listening on port ${port}`));
