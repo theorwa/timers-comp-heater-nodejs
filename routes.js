@@ -4,8 +4,8 @@ const router = express.Router();
 
 router.all('*', cors());
 
-var timers = "compres = 00:00:00,notComp = 00:00:00,heater = 00:00:00,notHeat = 00:00:00";
-var temp = "temp 1 max = 00.00 C,temp 1 now = 00.00 C,temp 1 min = 00.00 C,temp 2 max = 00.00 C,temp 2 now = 00.00 C,temp 2 min = 00.00 C";
+var timers = "compres: = 00:00:00,notComp: = 00:00:00,heater : = 00:00:00,notHeat: = 00:00:00";
+var temp = "temp 1 max: = 00.00 C,temp 1 now: = 00.00 C,temp 1 min: = 00.00 C,temp 2 max: = 00.00 C,temp 2 now: = 00.00 C,temp 2 min: = 00.00 C";
 
 router.get('/data', (req, res) => {
     res.status(200).json({timers, temp})
