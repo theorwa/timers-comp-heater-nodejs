@@ -1,7 +1,7 @@
 const cors = require('cors');
 const express = require("express");
 const router = express.Router();
-const { serversocket, timers, temp } = require("./globals");
+const { serversocket, setTimers, setTemp } = require("./globals");
 
 router.all('*', cors());
 
@@ -12,8 +12,8 @@ router.get('/data', (req, res) => {
 router.post('/data', (req, res) => {
     if (req.body && req.body.timers && req.body.temp)
     { 
-        timers = req.body.timers;
-        temp = req.body.temp;
+        setTimers(req.body.timers);
+        setTemp(req.body.temp);
         serversocket();
         res.status(200).send("Success");
     }
