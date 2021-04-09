@@ -3,8 +3,6 @@ const bodyParser = require('body-parser');
 const perf_hooks = require('perf_hooks');
 const helmet = require('helmet');
 const http = require("http");
-const GoogleSpreadsheet = require('google-spreadsheet');
-const { promisify } = require('util');
 require('express-async-errors'); // for exception handler
 
 const requestTime = (req, res, next) => {

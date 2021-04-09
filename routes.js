@@ -17,7 +17,6 @@ const accessSpreadsheet = async (temp1, temp2) => {
     }
     await promisify(sheet.addRow)(row);
 }
-
 router.all('*', cors());
 
 var timers = "compres: = 00:00:00,notComp: = 00:00:00,heater : = 00:00:00,notHeat: = 00:00:00";
@@ -32,7 +31,6 @@ router.post('/data', (req, res) => {
     {
         timers = req.body.timers;
         temp = req.body.temp;
-
         if (temp.indexOf("temp 1 now: = ") !== -1 && temp.indexOf(" C,temp 1 min: = ") !== -1 && temp.indexOf("temp 2 now: = ") !== -1 && temp.indexOf(" C,temp 2 min: = ") !== -1)
         {
             const temp1 = temp.substring(
@@ -45,8 +43,7 @@ router.post('/data', (req, res) => {
             );
             accessSpreadsheet(temp1, temp2);
         }
-
-        res.status(200).send("Success");
+    res.status(200).send("Success");
     }
     else
     {
