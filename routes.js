@@ -12,8 +12,9 @@ const accessSpreadsheet = async (temp1Max, temp1, temp1Min, temp2Max, temp2, tem
     await promisify(doc.useServiceAccountAuth)(creds);
     const info = await promisify(doc.getInfo)();
     const sheet = info.worksheets[0];
+    const time = new Date();
     const row = {
-        time: Date(),
+        time: time.toLocaleString('en-US', { timeZone: 'Asia/Jerusalem' }),
         temp1Max: temp1Max,
         temp1: temp1,
         temp1Min: temp1Min,
