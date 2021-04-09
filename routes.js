@@ -6,6 +6,8 @@ const { promisify } = require('util');
 const creds = require('./refrigerator-app-sheet-694e986fd28f.json');
 const doc = new GoogleSpreadsheet('1KATozL-bJMRbIVW-kIJARpII-HLeGu7xjLtT4W4gdNw');
 
+var sheets_counter = 0;
+
 const accessSpreadsheet = async (temp1, temp2) => {
     await promisify(doc.useServiceAccountAuth)(creds);
     const info = await promisify(doc.getInfo)();
@@ -31,17 +33,39 @@ router.post('/data', (req, res) => {
     {
         timers = req.body.timers;
         temp = req.body.temp;
-        if (temp.indexOf("temp 1 now: = ") !== -1 && temp.indexOf(" C,temp 1 min: = ") !== -1 && temp.indexOf("temp 2 now: = ") !== -1 && temp.indexOf(" C,temp 2 min: = ") !== -1)
+        if (sheets_counter++ > 10)
         {
-            const temp1 = temp.substring(
-                temp.indexOf("temp 1 now: = ") + 14, 
-                temp.indexOf(" C,temp 1 min: = ")
-            );
-            const temp2 = temp.substring(
-                temp.indexOf("temp 2 now: = ") + 14, 
-                temp.indexOf(" C,temp 2 min: = ")
-            );
-            accessSpreadsheet(temp1, temp2);
+            sheets_counter = 0;
+            if (temp.indexOf("temp 1 max: = ") !== -1 && temp.indexOf(" C,temp 1 now: = ") !== -1 && temp.indexOf("temp 1 now: = ") !== -1 && temp.indexOf(" C,temp 1 min: = ") !== -1
+                && temp.indexOf("temp 1 min: = ") !== -1 && temp.indexOf(" C,temp 2 max: = ") !== -1 && temp.indexOf("temp 2 max: = ") !== -1 && temp.indexOf(" C,temp 2 now: = ") !== -1
+                && temp.indexOf("temp 2 now: = ") !== -1 && temp.indexOf(" C,temp 2 min: = ") !== -1)            
+            {
+                const temp1Max = temp.substring(
+                    temp.indexOf("temp 1 max: = ") + 14, 
+                    temp.indexOf(" C,temp 1 now: = ")
+                );
+                const temp1 = temp.substring(
+                    temp.indexOf("temp 1 now: = ") + 14, 
+                    temp.indexOf(" C,temp 1 min: = ")
+                );
+                const temp1Min = temp.substring(
+                    temp.indexOf("temp 1 min: = ") + 14, 
+                    temp.indexOf(" C,temp 2 max: = ")
+                );
+                const temp2Max = temp.substring(
+                    temp.indexOf("temp 2 max: = ") + 14, 
+                    temp.indexOf(" C,temp 2 now: = ")
+                );
+                const temp2 = temp.substring(
+                    temp.indexOf("temp 2 now: = ") + 14, 
+                    temp.indexOf(" C,temp 2 min: = ")
+                );
+                const temp2Min = temp.substring(
+                    temp.indexOf("temp 2 min: = ") + 14, 
+                    temp.length - 2
+                );
+                accessSpreadsheet(temp1, temp2);
+            }
         }
     res.status(200).send("Success");
     }
