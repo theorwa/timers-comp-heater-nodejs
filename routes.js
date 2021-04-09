@@ -8,14 +8,18 @@ const doc = new GoogleSpreadsheet('1KATozL-bJMRbIVW-kIJARpII-HLeGu7xjLtT4W4gdNw'
 
 var sheets_counter = 0;
 
-const accessSpreadsheet = async (temp1, temp2) => {
+const accessSpreadsheet = async (temp1Max, temp1, temp1Min, temp2Max, temp2, temp2Min) => {
     await promisify(doc.useServiceAccountAuth)(creds);
     const info = await promisify(doc.getInfo)();
     const sheet = info.worksheets[0];
     const row = {
         time: Date(),
+        temp1Max: temp1Max,
         temp1: temp1,
-        temp2: temp2
+        temp1Min: temp1Min,
+        temp2Max: temp2Max,
+        temp2: temp2,
+        temp2Min: temp2Min
     }
     await promisify(sheet.addRow)(row);
 }
@@ -64,7 +68,7 @@ router.post('/data', (req, res) => {
                     temp.indexOf("temp 2 min: = ") + 14, 
                     temp.length - 2
                 );
-                accessSpreadsheet(temp1, temp2);
+                accessSpreadsheet(temp1Max, temp1, temp1Min, temp2Max, temp2, temp2Min);
             }
         }
     res.status(200).send("Success");
