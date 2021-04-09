@@ -13,6 +13,18 @@ const serversocket = (io) => {
     }
 }
 
+const GoogleSpreadsheet = require('google-spreadsheet');
+const { promisify } = require('util');
+const creds = require('./refrigerator-app-sheet-694e986fd28f.json');
+const doc = new GoogleSpreadsheet('1KATozL-bJMRbIVW-kIJARpII-HLeGu7xjLtT4W4gdNw');
+async const accessSpreadsheet = () => {
+    await promisify(doc.useServiceAccountAuth)(creds);
+    const info = await promisify(doc.getInfo)();
+    console.log(info.worksheets[0]);    
+}
+accessSpreadsheet();
+
+
 module.exports = {
     serversocket,
     timers,

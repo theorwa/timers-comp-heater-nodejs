@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "refrigerator-app-sheet",
+  "private_key_id": "694e986fd28f9d37d8aeddebc78dccf08179bf89",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC7Mwtc8rGH3R7/\nEsWAXX8rD3NH5vciMMqpnOOynlMtDa0jIbjP1V42hkb0qimBtW6FCxwDWbmTvCPY\njk+E+UqATd/IxlireO5GDJybo7IPlpu+d6sxTDVvEcNANzCBrrNBCaRoncqIGZas\nGMX1JUTl1XUo+om5pScrnh25mxflPWo5bYL8hp/f9boV5uHoeQ5dlzJOL8RYKeH+\nn6HRpL44iwO89i71DQmxZcBc7EiJ6MtsXFBX7BeQNwB0P/FLTDKTe12qrGDxctwK\nAlHPXbgmBfPeMauJIs69DBSFc86rDAUqh0aNeq21tB7BO6fEV0BD2YkX7W4scrda\nbM9tRf6zAgMBAAECggEAAg0HHNeT1lc31beQ7l0X3ZLnwmvnXTqHneAYJobRhnbV\n5MKj0bMWuyYxdNDAb6lbMp3yip7bB6FSCzdT67MHe+xefUafBhHnGmFc/d+HPeB6\niFWrTHj3ROY+618vatxNHnNKl9LSuzb8jZof4RWtcY8rH23PQHdsvG+ZB8WJN3u1\n76BWeDr05Ufn1zHrY3Oy4xVb2ZEvWbwVeVUhAT6UIwoJl0BSZD/yMoz8inUVzULc\nMGY9h250uteNttrbEVNrLTrzLfOTfMdwKIujkgK8hiQ8OVQPJ3QmMgDE4vGYfeX8\nfnVP/VTIeiRj8M4KMkwO9khhb9dHwNhDex6sqN4E8QKBgQD2cA6PYb7kLzgiEhkC\ndAikethci1BtvLnV3jMyNMSnUaaPayZvaVhPxBOIqpOMzUUm9HX3/mOD+iRw09w4\nAr0M7tnvBLWeJx25sNup1qbnTLWgHkyO4ASVXh3xRioSjnQdI8RD+SlXszVAUVpk\nn/aDgu0/H4iX8vOlwFgXrjLlPQKBgQDCdo37Pv7z8KIYsSvK/9FF88WiFqX2uZbW\nI8YqT0v8p110krvos4TKJqjTWVfth6Jpi7aX7pM3InNX3BYGO4zUHoYwSbSktr/D\ng0uyFGpTCBttk5US2dtRj8oqewQNlaYHPnOye8wOXuNipV5o0NrwsAsNR0qY2qYs\nNMQ3jaESrwKBgQDqf7K7KU3WIECP2xzFQti+es7LMR31bjJ/mhKpYaEHfiC6NEG8\nnkeUj4Xu9DG3N9TnvpNKylyzxyFJ46+X9LMkTVw/nwGbXqlgezRrJoBndI0Xsf0z\nr2NtJsPjRNrgEYHYAKLP85Yth6/SZhdXzQdsGPfcqwr1XBAQ1zh8QBzaGQKBgGpT\n3Io2Bb1oI5mQtjtG6Sxwf+2CqLhg/cKUyPO1a/z3njfxS2GPVtoZjVISletAsGM5\ni1tDjacl5R9zLW+2++e30PNyOZ2edvf2QFtcok5ILocZnPczu6G7F3Vm0e6DlsZ7\nNVOwMQDijT4Q4bA6EpxsBX77LiSp2RZuu6MMg7ftAoGAcAiKajq9QSAGbr5YdFr0\n6FSxwobOlFCGoka3r0I0CB/YjT6IeNJgDyPQnmnjr432G8tQB9Ph17cGn5G9LCzP\n6CWe2V0//m+OEcoi6dLdOy5BANgCx6BS3MU595khUFAt+VGi0ggkViSHAdWzxXjE\n95bCSsiU1kv6c1EYY4+3/yc=\n-----END PRIVATE KEY-----\n",
+  "client_email": "sheets@refrigerator-app-sheet.iam.gserviceaccount.com",
+  "client_id": "114078549464777254054",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/sheets%40refrigerator-app-sheet.iam.gserviceaccount.com"
+}
