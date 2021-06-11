@@ -92,6 +92,9 @@ router.post('/data', (req, res) => {
                     timers.length
                 );
                 accessSpreadsheet(temp1Max, temp1, temp1Min, temp2Max, temp2, temp2Min, compTime, notCompTime, heatTime, notHeatTime);
+                console.log('sent to google sheets')
+            } else {
+                console.log('failed to send to google sheets')
             }
         }
     res.status(200).send("Success");
