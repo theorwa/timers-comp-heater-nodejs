@@ -8,7 +8,7 @@ const doc = new GoogleSpreadsheet('1KATozL-bJMRbIVW-kIJARpII-HLeGu7xjLtT4W4gdNw'
 
 var sheets_counter = 0;
 
-const accessSpreadsheet = async (temp1Max, temp1, temp1Min, temp2Max, temp2, temp2Min) => {
+const accessSpreadsheet = async (temp1Max, temp1, temp1Min, temp2Max, temp2, temp2Min, compTime, notCompTime, heatTime, notHeatTime) => {
     await promisify(doc.useServiceAccountAuth)(creds);
     const info = await promisify(doc.getInfo)();
     const sheet = info.worksheets[0];
@@ -20,7 +20,11 @@ const accessSpreadsheet = async (temp1Max, temp1, temp1Min, temp2Max, temp2, tem
         temp1Min: temp1Min,
         temp2Max: temp2Max,
         temp2: temp2,
-        temp2Min: temp2Min
+        temp2Min: temp2Min,
+        compTime: compTime,
+        notCompTime: notCompTime,
+        heatTime: heatTime,
+        notHeatTime: notHeatTime
     }
     await promisify(sheet.addRow)(row);
 }
@@ -43,7 +47,9 @@ router.post('/data', (req, res) => {
             sheets_counter = 0;
             if (temp.indexOf("temp 1 max: = ") !== -1 && temp.indexOf(" C,temp 1 now: = ") !== -1 && temp.indexOf("temp 1 now: = ") !== -1 && temp.indexOf(" C,temp 1 min: = ") !== -1
                 && temp.indexOf("temp 1 min: = ") !== -1 && temp.indexOf(" C,temp 2 max: = ") !== -1 && temp.indexOf("temp 2 max: = ") !== -1 && temp.indexOf(" C,temp 2 now: = ") !== -1
-                && temp.indexOf("temp 2 now: = ") !== -1 && temp.indexOf(" C,temp 2 min: = ") !== -1)            
+                && temp.indexOf("temp 2 now: = ") !== -1 && temp.indexOf(" C,temp 2 min: = ") !== -1 && temp.indexOf("compres: = ") !== -1 && temp.indexOf(",notComp: = ") !== -1
+                && temp.indexOf("notComp: = ") !== -1 && temp.indexOf(",heater : = ") !== -1 && temp.indexOf("heater : = ") !== -1 && temp.indexOf(",notHeat: = ") !== -1
+                && temp.indexOf("notHeat: = ") !== -1) 
             {
                 const temp1Max = temp.substring(
                     temp.indexOf("temp 1 max: = ") + 14, 
@@ -62,14 +68,30 @@ router.post('/data', (req, res) => {
                     temp.indexOf(" C,temp 2 now: = ")
                 );
                 const temp2 = temp.substring(
-                    temp.indexOf("temp 2 now: = ") + 14, 
+                    temp.indexOf("temp 2 now: = ") + 11, 
                     temp.indexOf(" C,temp 2 min: = ")
                 );
                 const temp2Min = temp.substring(
-                    temp.indexOf("temp 2 min: = ") + 14, 
+                    temp.indexOf("temp 2 min: = ") + 11, 
                     temp.length - 2
                 );
-                accessSpreadsheet(temp1Max, temp1, temp1Min, temp2Max, temp2, temp2Min);
+                const compTime = timers.substring(
+                    timers.indexOf("compres: = ") + 11, 
+                    timers.indexOf(",notComp: = ")
+                );
+                const notCompTime = timers.substring(
+                    timers.indexOf("notComp: = ") + 11, 
+                    timers.indexOf(",heater : = ")
+                );
+                const heatTime = timers.substring(
+                    timers.indexOf("heater : = ") + 11, 
+                    timers.indexOf(",notHeat: = ")
+                );
+                const notHeatTime = timers.substring(
+                    timers.indexOf("notHeat: = ") + 11, 
+                    timers.length
+                );
+                accessSpreadsheet(temp1Max, temp1, temp1Min, temp2Max, temp2, temp2Min, compTime, notCompTime, heatTime, notHeatTime);
             }
         }
     res.status(200).send("Success");
