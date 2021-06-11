@@ -47,9 +47,9 @@ router.post('/data', (req, res) => {
             sheets_counter = 0;
             if (temp.indexOf("temp 1 max: = ") !== -1 && temp.indexOf(" C,temp 1 now: = ") !== -1 && temp.indexOf("temp 1 now: = ") !== -1 && temp.indexOf(" C,temp 1 min: = ") !== -1
                 && temp.indexOf("temp 1 min: = ") !== -1 && temp.indexOf(" C,temp 2 max: = ") !== -1 && temp.indexOf("temp 2 max: = ") !== -1 && temp.indexOf(" C,temp 2 now: = ") !== -1
-                && temp.indexOf("temp 2 now: = ") !== -1 && temp.indexOf(" C,temp 2 min: = ") !== -1 && temp.indexOf("compres: = ") !== -1 && temp.indexOf(",notComp: = ") !== -1
-                && temp.indexOf("notComp: = ") !== -1 && temp.indexOf(",heater : = ") !== -1 && temp.indexOf("heater : = ") !== -1 && temp.indexOf(",notHeat: = ") !== -1
-                && temp.indexOf("notHeat: = ") !== -1) 
+                && temp.indexOf("temp 2 now: = ") !== -1 && temp.indexOf(" C,temp 2 min: = ") !== -1 && timers.indexOf("compres: = ") !== -1 && timers.indexOf(",notComp: = ") !== -1
+                && timers.indexOf("notComp: = ") !== -1 && timers.indexOf(",heater : = ") !== -1 && timers.indexOf("heater : = ") !== -1 && timers.indexOf(",notHeat: = ") !== -1
+                && timers.indexOf("notHeat: = ") !== -1) 
             {
                 const temp1Max = temp.substring(
                     temp.indexOf("temp 1 max: = ") + 14, 
