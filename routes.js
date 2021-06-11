@@ -45,15 +45,15 @@ router.post('/data', (req, res) => {
 
         console.log(timers);
         console.log(temp);
-        
+
         if (sheets_counter++ > 10)
         {
             sheets_counter = 0;
             if (temp.indexOf("temp 1 max: = ") !== -1 && temp.indexOf(" C,temp 1 now: = ") !== -1 && temp.indexOf("temp 1 now: = ") !== -1 && temp.indexOf(" C,temp 1 min: = ") !== -1
                 && temp.indexOf("temp 1 min: = ") !== -1 && temp.indexOf(" C,temp 2 max: = ") !== -1 && temp.indexOf("temp 2 max: = ") !== -1 && temp.indexOf(" C,temp 2 now: = ") !== -1
-                && temp.indexOf("temp 2 now: = ") !== -1 && temp.indexOf(" C,temp 2 min: = ") !== -1 && timers.indexOf("compres:=") !== -1 && timers.indexOf(",notComp:=") !== -1
-                && timers.indexOf("notComp:=") !== -1 && timers.indexOf(",heater:=") !== -1 && timers.indexOf("heater:=") !== -1 && timers.indexOf(",notHeat:=") !== -1
-                && timers.indexOf("notHeat:=") !== -1) 
+                && temp.indexOf("temp 2 now: = ") !== -1 && temp.indexOf(" C,temp 2 min: = ") !== -1 && timers.indexOf("compres: =") !== -1 && timers.indexOf(",notComp: =") !== -1
+                && timers.indexOf("notComp: =") !== -1 && timers.indexOf(",heater: =") !== -1 && timers.indexOf("heater: =") !== -1 && timers.indexOf(",notHeat: =") !== -1
+                && timers.indexOf("notHeat: =") !== -1) 
             {
                 const temp1Max = temp.substring(
                     temp.indexOf("temp 1 max: = ") + 14, 
@@ -80,19 +80,19 @@ router.post('/data', (req, res) => {
                     temp.length - 2
                 );
                 const compTime = timers.substring(
-                    timers.indexOf("compres:=") + 11, 
-                    timers.indexOf(",notComp:=")
+                    timers.indexOf("compres: =") + 11, 
+                    timers.indexOf(",notComp: =")
                 );
                 const notCompTime = timers.substring(
-                    timers.indexOf("notComp:=") + 11, 
-                    timers.indexOf(",heater:=")
+                    timers.indexOf("notComp: =") + 11, 
+                    timers.indexOf(",heater: =")
                 );
                 const heatTime = timers.substring(
-                    timers.indexOf("heater:=") + 11, 
-                    timers.indexOf(",notHeat:=")
+                    timers.indexOf("heater: =") + 11, 
+                    timers.indexOf(",notHeat: =")
                 );
                 const notHeatTime = timers.substring(
-                    timers.indexOf("notHeat:=") + 11, 
+                    timers.indexOf("notHeat: =") + 11, 
                     timers.length
                 );
                 accessSpreadsheet(temp1Max, temp1, temp1Min, temp2Max, temp2, temp2Min, compTime, notCompTime, heatTime, notHeatTime);
