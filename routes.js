@@ -72,11 +72,11 @@ router.post('/data', (req, res) => {
                     temp.indexOf(" C,temp 2 now: = ")
                 );
                 const temp2 = temp.substring(
-                    temp.indexOf("temp 2 now: = ") + 11, 
+                    temp.indexOf("temp 2 now: = ") + 14, 
                     temp.indexOf(" C,temp 2 min: = ")
                 );
                 const temp2Min = temp.substring(
-                    temp.indexOf("temp 2 min: = ") + 11, 
+                    temp.indexOf("temp 2 min: = ") + 14, 
                     temp.length - 2
                 );
                 const compTime = timers.substring(
