@@ -42,6 +42,10 @@ router.post('/data', (req, res) => {
     {
         timers = req.body.timers;
         temp = req.body.temp;
+
+        console.log(timers);
+        console.log(temp);
+        
         if (sheets_counter++ > 10)
         {
             sheets_counter = 0;
